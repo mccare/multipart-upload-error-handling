@@ -16,7 +16,9 @@ module.exports = async function (fastify) {
 				currentReadStream.destroy()
 			}
 		}
-		request.raw.on('close', cleanup)
+
+		// Uncomment the next line to enable cleanup when the request is closed
+		// request.raw.on('close', cleanup)
 
 		for await (const part of parts) {
 			const tempFile = `${os.tmpdir()}/${uuidv4()}.file`
